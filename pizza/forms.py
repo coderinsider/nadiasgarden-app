@@ -10,4 +10,4 @@ class PizzaForm(forms.Form):
         ("large", "Large")
     )
     
-    sizes    = forms.ChoiceField(label="Sizes", choices=CHOICES)
+    sizes    = forms.ChoiceField(label="Size", choices=CHOICES)
