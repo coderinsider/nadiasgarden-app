@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime
+from .forms import PizzaForm
 # Create your views here.
 def home(request):
     dataArray = {'date': datetime.now().strftime("%b %d, %Y %H:%M:%S")}
@@ -8,4 +9,5 @@ def home(request):
 
 def order(request):
     dataArray = {'date': datetime.now().strftime("%b %d, %Y %H:%M:%S")}
-    return render(request, 'pizza/order.html', dataArray)
+    form = PizzaForm()
+    return render(request, 'pizza/order.html', {'pizzaform': form})
