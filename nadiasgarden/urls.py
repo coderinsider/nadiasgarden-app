@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from pizza import views
 
+
+URLNAMEPATH = "nadiasgarden"
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name=f'{URLNAMEPATH}.home'),
+    path('order', views.order, name=f'{URLNAMEPATH}.order'),
 ]
