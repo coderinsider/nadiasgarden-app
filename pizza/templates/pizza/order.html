@@ -1,5 +1,5 @@
 Order for pizza
-<form action="" method="post">
+<form action="{% url 'nadiasgarden.home' %}" method="post">
     {% csrf_token %}
     <label for="">Topping 1:</label>
     <input type="text" id="topping1" name="topping1" />
@@ -11,4 +11,6 @@ Order for pizza
         <option value="medium">Medium</option>
         <option value="large">Large</option>
     </select>
+
+    <input type="submit" value="Order Pizza" />
 </form>
