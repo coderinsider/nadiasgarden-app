@@ -1,7 +1,8 @@
 Order for pizza
-<form action="{% url 'nadiasgarden.home' %}" method="post">
+<h2>Here take a look {{ note }}</h2>
+<form action="{% url 'nadiasgarden.order' %}" method="post">
     {% csrf_token %}
-    <label for="">Topping 1:</label>
+    <!-- <label for="">Topping 1:</label>
     <input type="text" id="topping1" name="topping1" />
     <label for="">Topping 2:</label>
     <input type="text" id="topping2" name="topping2" />
@@ -10,7 +11,7 @@ Order for pizza
         <option value="small">Small</option>
         <option value="medium">Medium</option>
         <option value="large">Large</option>
-    </select>
-
+    </select> -->
+    {{ pizzaform }}
     <input type="submit" value="Order Pizza" />
 </form>

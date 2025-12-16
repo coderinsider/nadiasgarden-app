@@ -74,10 +74,20 @@ WSGI_APPLICATION = 'nadiasgarden.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
+    #**
+    # This is for sql lite
+    #**
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'OPTIONS': {
+    #         'read_default_file': '/nadiasgarden/my.conf'
+    #     }
+    # }
 }
 
 
