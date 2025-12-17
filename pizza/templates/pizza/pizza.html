@@ -1,6 +1,9 @@
 <h1>Orders Pizzas</h1>
 
 <h2>{{ note }}</h2>
+{% if created_pizza_id %}
+<a href="{% url 'nadiasgarden.order_edit' created_pizza_id %}" method="post">Edit your order</a>
+{% endif %}
 <form action="{% url 'nadiasgarden.pizzas' %}" method="post">
     {% csrf_token %}
     {{ formset.management_form }}

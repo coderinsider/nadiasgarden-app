@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import PizzaForm, MultiplePizzaForm
 from django.forms import formset_factory
 from .models import Pizza
+
 def home(request):
     return render(request, 'pizza/home.html')
 
@@ -11,12 +12,12 @@ def order(request):
         filled_form = PizzaForm(request.POST)
         if filled_form.is_valid():
             created_pizza = filled_form.save()
-            created_pizza_id = created_pizza.id
+            created_pizza_pk = created_pizza.id
             note = 'Thanks for ordering! Your %s %s and %s pizza is on its way!' %(filled_form.cleaned_data['size'],
             filled_form.cleaned_data['topping1'],
             filled_form.cleaned_data['topping2'],)
             new_form = PizzaForm()
-            return render(request, 'pizza/order.html', {'created_pizza_id': created_pizza_id, 'pizzaform': new_form, 'note':note, 'multiple_form':multiple_form, })
+            return render(request, 'pizza/order.html', {'created_pizza_pk':created_pizza_pk, 'pizzaform':new_form, 'note':note, 'multiple_form':multiple_form, })
     else:
         form = PizzaForm()
         return render(request, 'pizza/order.html', {'multiple_form':multiple_form, 'pizzaform':form})
@@ -36,17 +37,16 @@ def pizzas(request):
             note = 'Pizzas have been ordered!'
         else:
             note = 'Order was not created, please try again'
-        return render(request, 'pizza/pizza.html', {'note':note, 'formset':formset})
+        return render(request, 'pizza/pizzas.html', {'note':note, 'formset':formset})
     else:
-        return render(request, 'pizza/pizza.html', {'formset':formset})
+        return render(request, 'pizza/pizzas.html', {'formset':formset})
 
-
-def order_edit(request, orderId):
-    pizza = Pizza.objects.get(pk=orderId)
+def edit_order(request, pk):
+    pizza = Pizza.objects.get(pk=pk)
     form = PizzaForm(instance=pizza)
     if request.method == 'POST':
-        filled_form = PizzaForm(request.POST, instance=pizza)
-        if filled_form.is_valid:
+        filled_form = PizzaForm(request.POST,instance=pizza)
+        if filled_form.is_valid():
             filled_form.save()
             form = filled_form
-    return render(request, 'pizza/order-edit.html', {'pizzaform': form, 'pizza': pizza})
+    return render(request, 'pizza/edit_order.html', {'pizzaform':form,'pizza':pizza})
