@@ -2,9 +2,9 @@ from django import forms
 from .models import Pizza
 
 class PizzaForm(forms.Form):
-    # topping1 = forms.CharField(label='Topping1', max_length=100, widget=forms.Textarea)
-    # topping2 = forms.CharField(label='Topping2',max_length=100)
-    topping = forms.MultipleChoiceField(choices=[('pep', 'Pepproni'), ('cheese', 'Cheese'), ('olives', 'Olives')], widget=forms.CheckboxSelectMultiple)
+    topping1 = forms.CharField(label='Topping1', max_length=100)
+    topping2 = forms.CharField(label='Topping2',max_length=100)
+    #topping = forms.MultipleChoiceField(choices=[('pep', 'Pepproni'), ('cheese', 'Cheese'), ('olives', 'Olives')], widget=forms.CheckboxSelectMultiple)
     CHOICES = (
         ("small", "Small"),
         ("medium", "Medium"),
