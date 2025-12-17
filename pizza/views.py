@@ -9,6 +9,7 @@ def home(request):
 def order(request):
     multiple_form = MultiplePizzaForm()
     if request.method == 'POST':
+        created_pizza_pk = None
         filled_form = PizzaForm(request.POST)
         if filled_form.is_valid():
             created_pizza = filled_form.save()
@@ -18,7 +19,7 @@ def order(request):
         else:
             note = 'Order was not created, please try again'
         new_form = PizzaForm()
-        return render(request, 'pizza/order.html', {'multiple_form':multiple_form, 'pizzaform':filled_form, 'note':note})
+        return render(request, 'pizza/order.html', {'multiple_form':multiple_form, 'pizzaform':filled_form, 'note':note, 'created_pizza_pk':created_pizza_pk})
     else:
         form = PizzaForm()
         return render(request, 'pizza/order.html', {'multiple_form':multiple_form, 'pizzaform':form})
