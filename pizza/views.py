@@ -9,9 +9,9 @@ def home(request):
 
 def order(request):
     if request.method == "POST":
-        filled_from  = PizzaForm(request.POST)
+        filled_from  = PizzaForm(request.POST, request.FILES)
         if filled_from.is_valid():
-            note = "Thanks for ordering. Your %s %s and %s  pizza is on its way" %(filled_from.cleaned_data['sizes'],
+            note = "Thanks for ordering. Your %s %s and %s  pizza is on its way" %(filled_from.cleaned_data['size'],
             filled_from.cleaned_data['topping1'],
             filled_from.cleaned_data['topping2'],)
             newForm = PizzaForm()

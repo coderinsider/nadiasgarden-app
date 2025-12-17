@@ -1,6 +1,6 @@
 Order for pizza
 <h2>Here take a look {{ note }}</h2>
-<form action="{% url 'nadiasgarden.order' %}" method="post">
+<form enctype="multipart/form-data" action="{% url 'nadiasgarden.order' %}" method="post">
     {% csrf_token %}
     <!-- <label for="">Topping 1:</label>
     <input type="text" id="topping1" name="topping1" />
