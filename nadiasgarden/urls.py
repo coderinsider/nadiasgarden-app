@@ -25,4 +25,5 @@ urlpatterns = [
     path('', views.home, name=f'{URLNAMEPATH}.home'),
     path('order', views.order, name=f'{URLNAMEPATH}.order'),
     path('pizzas', views.pizzas, name=f'{URLNAMEPATH}.pizzas')
+    path('order/<int:orderId>/edit', views.order_edit, name=f'{URLNAMEPATH}.order_edit')
 ]
