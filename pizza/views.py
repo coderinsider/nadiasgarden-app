@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime
+from django.forms import formset_factory
 from .forms import PizzaForm, MultiplePizzaForm
 # Create your views here.
 def home(request):
@@ -23,4 +24,21 @@ def order(request):
     
 
 def pizzas(request):
-    # Pass the code
+    number_of_pizzas = 2
+    filled_multple_pizza_from = MultiplePizzaForm(request.GET)
+
+    if filled_multple_pizza_from.is_valid():
+        number_of_pizzas = filled_multple_pizza_from.cleaned_data['number']
+    
+    PizzaFormSet = formset_factory(PizzaForm, extra=number_of_pizzas)
+    formset = PizzaFormSet()
+    if request.method == 'POST':
+        filled_formset = PizzaFormSet(request.POST)
+        if filled_formset.is_valid():
+            for form in filled_formset:
+                print(form.cleaned_data['topping1'])
+            note = "Pizzas have been ordered"
+        else:
+            note = "Order was not created, please try again"
+
+        return render(request, 'pizza/pizza.html', {'note': note, 'formset': formset})
