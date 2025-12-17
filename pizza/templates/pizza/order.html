@@ -15,3 +15,12 @@ Order for pizza
     {{ pizzaform }}
     <input type="submit" value="Order Pizza" />
 </form>
+
+<br/><br/>
+
+Want more than one pizza?
+
+<form action="{% url 'nadiasgarden.pizzas' %}" method="get">
+    {{multiple_form}}
+    <input type="submit" value="Get Pizza">
+</form>
