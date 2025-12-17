@@ -1,0 +1,12 @@
+<h1>Orders Pizzas</h1>
+
+<h2>{{ note }}</h2>
+<form action="{% url 'nadiasgarden.pizzas' %}" method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+    {% for form in formset %}
+        {{ form }}
+    {% endfor %}
+    <input type="submit" value="Order Pizzas" />
+</form>

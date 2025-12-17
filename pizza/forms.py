@@ -25,6 +25,6 @@ class PizzaForm(forms.ModelForm):
         # widgets = {'size': forms.CheckboxSelectMultiple}
 
 
-class MultiplePizzaForm(forms.ModelForm):
+class MultiplePizzaForm(forms.Form):
     # pass the code
     number = forms.IntegerField(min_value=2, max_value=6)
