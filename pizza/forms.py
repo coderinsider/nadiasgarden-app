@@ -7,7 +7,7 @@ from .models import Pizza, Size
 #     size = forms.ChoiceField(label='Size', choices=[('Small', 'Small'), ('Medium', 'Medium'), ('Large', 'Large')])
 
 class PizzaForm(forms.ModelForm):
-    
+
     class Meta:
             model = Pizza
             fields = ['topping1', 'topping2', 'size']
