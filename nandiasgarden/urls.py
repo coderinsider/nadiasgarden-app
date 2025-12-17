@@ -1,8 +1,7 @@
-"""
-URL configuration for nadiasgarden project.
+"""nandiasgarden URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
+    https://docs.djangoproject.com/en/2.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -18,12 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from pizza import views
 
-
-URLNAMEPATH = "nadiasgarden"
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name=f'{URLNAMEPATH}.home'),
-    path('order', views.order, name=f'{URLNAMEPATH}.order'),
-    path('pizzas', views.pizzas, name=f'{URLNAMEPATH}.pizzas'),
-    path('order/<int:orderId>/edit', views.order_edit, name=f'{URLNAMEPATH}.order_edit')
+    path('', views.home, name='home'),
+    path('order', views.order, name='order'),
+    path('pizzas', views.pizzas, name='pizzas'),
+    path('order</int:pk>', views.edit_order, name='edit_order'),
 ]

@@ -1,17 +1,21 @@
-Order for pizza
-<h2>Here take a look {{ note }}</h2>
-<form action="{% url 'nadiasgarden.order' %}" method="post">
+<h1>Order a Pizza</h1>
+
+<h2>{{ note }}</h2>
+    {% if created_pizza_pk %}
+    <h2><a href="{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a></h2>
+    {% endif %}
+
+
+<form action="{% url 'order' %}" method="post">
     {% csrf_token %}
-    <!-- <label for="">Topping 1:</label>
-    <input type="text" id="topping1" name="topping1" />
-    <label for="">Topping 2:</label>
-    <input type="text" id="topping2" name="topping2" />
-    <label for="">Size:</label>
-    <select name="size" id="size">
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-    </select> -->
     {{ pizzaform }}
-    <input type="submit" value="Order Pizza" />
+    <input type="submit" value="Order Pizza">
+</form>
+
+<br><br>
+Want more than one pizza?
+<form action="{% url 'pizzas' %}" method="get">
+  {% csrf_token %}
+  {{ multiple_form }}
+  <input type="submit" value="Get Pizzas">
 </form>
